@@ -171,7 +171,7 @@ function App() {
         .then((res) => {
           if (res) {
             setLoggedIn(true);
-            setUserData(res.data.email);
+            setUserData(res.user.email);
             navigate("/", { replace: true });
           }
         })
@@ -213,7 +213,7 @@ function App() {
     auth
       .authorize(formValue.email, formValue.password)
       .then((res) => {
-        if (res.token) {
+        if (res.jwt) {
           console.log(res);
           setLoggedIn(true);
           navigate("/", { replace: true });
