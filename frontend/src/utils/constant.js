@@ -1,7 +1,7 @@
 export const options = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-62',
+  url: 'api.alabeska.nomoreparties.sbs',
   headers: {
-    authorization: 'aeed9d86-5904-46bf-9ebc-2bd545ca66e7',
+    // authorization: 'aeed9d86-5904-46bf-9ebc-2bd545ca66e7',
     'Content-Type': 'application/json',
   },
 };

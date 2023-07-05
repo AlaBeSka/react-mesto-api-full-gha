@@ -1,4 +1,4 @@
-const BASE_URL = "https://auth.nomoreparties.co";
+const BASE_URL = "api.alabeska.nomoreparties.sbs";
 
 function makeRequest(url, method, body, token) {
   const headers = {
