@@ -10,7 +10,6 @@ const PORT = 3000;
 
 const app = express();
 
-
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {
   useNewUrlParser: true,
 });
@@ -20,7 +19,6 @@ app.use(helmet());
 app.use(express.json());
 
 app.use(router);
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(errors());
 app.use(errorHandler);
 
