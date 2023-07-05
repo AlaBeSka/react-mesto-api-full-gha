@@ -7,7 +7,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.18.20
+IP 51.250.18.20
 
 Frontend https://alabeska.nomoreparties.sbs
 
