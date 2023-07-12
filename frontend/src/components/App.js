@@ -188,7 +188,11 @@ function App() {
     auth
       .register(formValue.email, formValue.password)
       .then((res) => {
-        if (res.error === "Пользователь с таким email уже зарегистрирован") {
+        if (
+          res.error === "Bad Request" ||
+          res.error ===
+            "Пользователь с таким электронным адресом уже зарегистрирован"
+        ) {
           regSuccess(false);
         } else {
           console.log(res);
@@ -213,6 +217,7 @@ function App() {
     auth
       .authorize(formValue.email, formValue.password)
       .then((res) => {
+        console.log(res);
         if (res.token) {
           console.log(res);
           setLoggedIn(true);
