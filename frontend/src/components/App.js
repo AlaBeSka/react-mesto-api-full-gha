@@ -213,7 +213,7 @@ function App() {
     auth
       .authorize(formValue.email, formValue.password)
       .then((res) => {
-        if (res.jwt) {
+        if (res.token) {
           console.log(res);
           setLoggedIn(true);
           navigate("/", { replace: true });
