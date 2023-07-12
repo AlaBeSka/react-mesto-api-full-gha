@@ -8,7 +8,16 @@ const signUpRouter = require('./signup');
 const userRouter = require('./users');
 const cardRouter = require('./cards');
 const NotFoundErr = require('../errors/notFound');
-const { allowedCors } = require('../middlewares/cors');
+
+const allowedCors = [
+  'https://praktikum.tk',
+  'http://praktikum.tk',
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+  'http://alabeska.nomoreparties.sbs',
+  'https://alabeska.nomoreparties.sbs',
+  'http://51.250.18.20:3000',
+];
 
 router.use(cors({
   origin: allowedCors,
