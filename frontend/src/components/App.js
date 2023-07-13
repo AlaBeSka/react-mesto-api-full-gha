@@ -72,18 +72,20 @@ function App() {
   }, [loggedIn]);
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser.user._id);
+    const isLiked = card.likes.some(i => i[0] === currentUser.user._id);
     const method = isLiked ? "deleteLike" : "setLike";
-    api[method](card._id)
-      .then((newCard) => {
-        const index = cards.findIndex((c) => c._id === card._id);
-        setCards((state) => {
-          const newCards = [...state];
-          newCards[index] = newCard;
-          return newCards;
-        });
-      })
-      .catch((err) => console.log(err));
+  
+    const apiCall = () => {
+      api[method](card._id)
+        .then((newCard) => {
+          setCards((state) =>
+            state.map((c) => (c._id === card._id ? newCard.data : c))
+          );
+        })
+        .catch((err) => console.log(err));
+    };
+  
+    apiCall();
   }
 
   function handleDeleteCard(card) {
