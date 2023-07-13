@@ -65,14 +65,14 @@ function App() {
       Promise.all([api.getInfoProfile(), api.getInitialCards()])
         .then(([data, cards]) => {
           setCurrentUser(data);
-          setCards(cards);
+          setCards(cards.data.reverse());
         })
         .catch((err) => console.log(err));
     }
   }, [loggedIn]);
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i._id === currentUser.user._id);
     const method = isLiked ? "deleteLike" : "setLike";
     api[method](card._id)
       .then((newCard) => {
@@ -134,12 +134,12 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  function handleAddPlace(newCard) {
+  function handleAddPlace(data) {
     setIsLoading(true);
     api
-      .createCard(newCard)
+      .createCard(data)
       .then((newCard) => {
-        setCards([newCard, ...cards]);
+        setCards([newCard.data, ...cards]);
         closeAllPopups();
       })
       .catch((err) => console.log(err))

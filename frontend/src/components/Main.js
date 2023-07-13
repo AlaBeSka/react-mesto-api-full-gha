@@ -24,13 +24,13 @@ function Main({
           >
             <img
               className="profile__avatar"
-              src={currentUser.avatar}
+              src={currentUser.user && currentUser.user.avatar}
               alt="Аватар"
             />
           </button>
           <div className="profile__profile-info">
             <div className="profile__title">
-              <h1 className="profile__name">{currentUser.name}</h1>
+              <h1 className="profile__name">{currentUser.user && currentUser.user.name}</h1>
               <button
                 name="popup-edit-open"
                 type="button"
@@ -38,7 +38,7 @@ function Main({
                 onClick={onEditProfile}
               />
             </div>
-            <p className="profile__profession">{currentUser.about}</p>
+            <p className="profile__profession">{currentUser.user && currentUser.user.about}</p>
           </div>
         </div>
         <button
@@ -49,8 +49,8 @@ function Main({
         />
       </section>
       <section className="elements">
-        {cards.map((card) => {
-          return (
+        {Array.isArray(cards) && cards.length > 0 ? (
+          cards.map((card) => (
             <Card
               key={card._id}
               card={card}
@@ -58,8 +58,10 @@ function Main({
               onCardLike={handleCardLike}
               onCardDelete={handleDeleteCard}
             />
-          );
-        })}
+          ))
+        ) : (
+          <p>No cards available</p>
+        )}
       </section>
     </main>
   );
