@@ -6,17 +6,15 @@ const cardSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
-      validate: {
-        validator: ({ length }) => length >= 2 && length <= 30,
-        message: 'Имя карточки должно быть длиной от 2 до 30 символов',
-      },
+      required: [true, 'Имя карточки обязательно для заполнения'],
+      minlength: [2, 'Имя карточки должно быть длиной от 2 символов'],
+      maxlength: [30, 'Имя карточки должно быть длиной до 30 символов'],
     },
     link: {
       type: String,
       validate: {
         validator: (url) => cfg.URL_REGEX.test(url),
-        message: 'Требуется ввести URL',
+        message: [true, 'URL обязателен для заполнения'],
       },
       required: true,
     },

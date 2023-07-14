@@ -53,9 +53,9 @@ const updateUserProfileData = (userId, data) => User.findByIdAndUpdate(userId, d
   throw new NotFoundErr('Пользователь с указанным _id не найден');
 }).catch((err) => {
   if (err instanceof ValidationError) {
-    throw new BadRequestErr('Переданы некорректные данные при обновлении профиля');
+    return next(new BadRequestErr('Переданы некорректные данные при обновлении профиля'));
   }
-  throw err;
+  return next(err);
 });
 
 module.exports.updateUserProfile = (req, res, next) => {
