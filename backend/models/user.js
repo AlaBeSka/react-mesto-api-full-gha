@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const IncorrectPOE = require('../errors/incorrectPassOrEmail');
 const cfg = require('../cfg');
-const IncorrectPOE = require('../errors/incorrectPassOrEmail.js');
 
 const userSchema = new mongoose.Schema(
   {
