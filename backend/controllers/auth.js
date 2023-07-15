@@ -7,7 +7,7 @@ const cfg = require('../cfg');
 
 const ConflictErr = require('../errors/conflict');
 const BadRequestErr = require('../errors/badReq');
-const errorHandler = require('../middlewares/errorHandler');
+const Unauthorized = require('../errors/unAutorize');
 
 module.exports.loginUser = (req, res, next) => {
   const { email, password } = req.body;
@@ -19,8 +19,9 @@ module.exports.loginUser = (req, res, next) => {
       return res.send({ token });
     })
     .catch(() => {
-      next(errorHandler);
-    });
+      next(new Unauthorized('Неправильные почта или пароль'));
+    })
+    .catch(next);
 };
 
 module.exports.registrationUser = (req, res, next) => {
