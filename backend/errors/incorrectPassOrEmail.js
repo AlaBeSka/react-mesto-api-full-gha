@@ -1,6 +1,0 @@
-module.exports = class IncorrectPOE extends Error {
-  constructor(messege) {
-    super(messege);
-    this.statusCode = 401;
-  }
-};

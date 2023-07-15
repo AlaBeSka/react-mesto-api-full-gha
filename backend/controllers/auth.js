@@ -5,9 +5,9 @@ const User = require('../models/user');
 
 const cfg = require('../cfg');
 
-const UnauthorizedErr = require('../errors/unAutorize');
 const ConflictErr = require('../errors/conflict');
 const BadRequestErr = require('../errors/badReq');
+const errorHandler = require('../middlewares/errorHandler');
 
 module.exports.loginUser = (req, res, next) => {
   const { email, password } = req.body;
@@ -19,7 +19,7 @@ module.exports.loginUser = (req, res, next) => {
       return res.send({ token });
     })
     .catch(() => {
-      next(new UnauthorizedErr('Неправильные почта или пароль'));
+      next(errorHandler);
     });
 };
 

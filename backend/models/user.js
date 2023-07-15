@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const IncorrectPOE = require('../errors/incorrectPassOrEmail');
 const cfg = require('../cfg');
+const Unauthorized = require('../errors/unAutorize');
 
 const userSchema = new mongoose.Schema(
   {
@@ -52,10 +52,10 @@ const userSchema = new mongoose.Schema(
                 if (matched) {
                   return user;
                 }
-                throw new IncorrectPOE('Неправильные почта или пароль');
+                throw new Unauthorized('Неправильные почта или пароль');
               });
             }
-            throw new IncorrectPOE('Неправильные почта или пароль');
+            throw new Unauthorized('Неправильные почта или пароль');
           });
       },
 
